@@ -21,12 +21,14 @@ let package = Package(
         // Targets can depend on other targets in this package, and on products in packages which this package depends on.
         .target(
             name: "SwiftFetch",
-            dependencies: [],
+            dependencies: [
+                "Bluebird"
+            ],
             path: "./Sources"
         ),
         .testTarget(
             name: "SwiftFetchTests",
-            dependencies: ["SwiftFetch"],
+            dependencies: ["SwiftFetch", "Bluebird"],
             path: "./Tests"
         ),
     ]
