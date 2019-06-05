@@ -1,4 +1,5 @@
 import Swift
+import Foundation
 import Bluebird
 
 struct SwiftFetch {
