@@ -2,7 +2,7 @@ import Swift
 import Foundation
 import Bluebird
 
-struct SwiftFetch {
+public struct SwiftFetch {
     public class FetchResponse {
         // Init Variables
         let data: Data;
