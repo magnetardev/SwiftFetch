@@ -3,19 +3,19 @@ import Bluebird
 
 public class FetchResponse {
     // Init Variables
-    let data: Data;
-    let response: URLResponse;
+    public let data: Data;
+    public let response: URLResponse;
     
     init(data: Data, response: URLResponse) {
         self.response = response;
         self.data = data;
     }
     
-    func text() -> String {
+    public func text() -> String {
         return String(data: self.data, encoding: String.Encoding.utf8)!
     }
     
-    func json<T: Decodable>(handler: T.Type) -> Any {
+    public func json<T: Decodable>(handler: T.Type) -> Any {
         let decoder = JSONDecoder();
         do {
             let data = try decoder.decode(handler, from: self.data)
