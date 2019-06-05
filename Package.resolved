@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "Bluebird",
+        "repositoryURL": "https://github.com/AndrewBarba/Bluebird.swift.git",
+        "state": {
+          "branch": null,
+          "revision": "981e82e82128138dba1a753c9839634ca88fc780",
+          "version": "5.0.0"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
