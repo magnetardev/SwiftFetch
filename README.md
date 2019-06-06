@@ -27,6 +27,7 @@ fetch(url: URL(string: "https://google.com")!).then { res in
 ```
 
 **FetchResponse**
+
 If successful, a fetch will return a `FetchResponse` in it's Promise. This helps streamline the process, and make it more similar to the JavaScript version.
 
 ```swift
