@@ -15,7 +15,7 @@ import SwiftFetch
 
 **Fetch**
 
-Fetch returns a promise, similar to JavaScript. The resolved value from the fetch is a `FetchResponse` item. This will let you run things like .text() and .json() easily, more info on this class can be found below. Below is an example of a fetch call.
+Fetch returns a promise, similar to JavaScript. The resolved value from the fetch is a `FetchResponse` item. This will let you run things like .text() and .json() easily, more info on this class can be found below.
 
 ```swift
 fetch(url: URL(string: "https://google.com")!).then { res in
@@ -25,6 +25,21 @@ fetch(url: URL(string: "https://google.com")!).then { res in
     print(err);
 }
 ```
+
+**FetchOptions**
+Optional values to pass to the fetch function.
+
+```swift
+public struct FetchOptions {
+    public var headers: [String:String]? = nil
+    public var body: Data? = nil
+    public var method: FetchMethod? = .GET
+}
+```
+- `headers` is a Dictionary with all your headers.
+- `body` is the body you want to pass via a POST request, or likewise.
+- `method` is one of the available methods. A list can be found below.
+
 
 **FetchResponse**
 
@@ -43,6 +58,25 @@ public class FetchResponse {
 - `text()` is a simple function that converts the data into text.
 - `json()` simplifies the json parsing process. It takes in a Decodable struct.
 
+
+**FetchMethod**
+
+The supported methods for SwiftFetch.
+
+```swift
+public enum FetchMethod: String {
+    case GET = "GET"
+    case HEAD = "HEAD"
+    case POST = "POST"
+    case PUT = "PUT"
+    case DELETE = "DELETE"
+    case CONNECT = "CONNECT"
+    case OPTIONS = "OPTIONS"
+    case TRACE = "TRACE"
+    case PATCH = "PATCH"
+}
+
+```
 
 
 
