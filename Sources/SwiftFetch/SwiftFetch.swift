@@ -1,38 +1,9 @@
 import Foundation
 import Bluebird
 
-public class FetchResponse {
-    
-    // Init Variables
-    public let data: Data;
-    public let response: URLResponse;
-    
-    // Init
-    init(data: Data, response: URLResponse) {
-        self.response = response;
-        self.data = data;
-    }
-    
-    // Parse as text
-    public func text() -> String {
-        return String(data: self.data, encoding: String.Encoding.utf8)!
-    }
-    
-    // Parse as JSON
-    public func json<T: Decodable>(handler: T.Type) -> Any {
-        let decoder = JSONDecoder();
-        do {
-            let data = try decoder.decode(handler, from: self.data)
-            return data;
-        } catch let err {
-            return err
-        }
-    }
-}
-
 
 // Main Fetch Function
-public func fetch(url: URL) -> Promise<FetchResponse> {
+public func fetch(url: URL, options: FetchOptions? = nil) -> Promise<FetchResponse> {
     return Promise<FetchResponse> { resolve, reject in
         DispatchQueue(label: "fetch.operation").async {
             
@@ -45,6 +16,24 @@ public func fetch(url: URL) -> Promise<FetchResponse> {
             // HTTP Method
             request.httpMethod = "GET";
             
+            if (options != nil) {
+                print(options!);
+                
+                if (options?.headers != nil) {
+                    for (key, value) in options?.headers ?? [:] {
+                        request.setValue(key, forHTTPHeaderField: value)
+                    }
+                }
+                
+                if (options?.body != nil) {
+                    request.httpBody = options?.body
+                }
+            
+                if (options?.method != nil) {
+                    request.httpMethod = (options?.method)!.rawValue;
+                }
+            }
+            
             // Run Task
             let task = session.dataTask(with: request as URLRequest, completionHandler: {data, response, error -> Void in
                 if (error != nil) {
@@ -53,6 +42,7 @@ public func fetch(url: URL) -> Promise<FetchResponse> {
                 } else {
                     // Resolve if ok.
                     let responseData = FetchResponse(data: data!, response: response!)
+                    print(responseData.text());
                     resolve(responseData);
                 }
             });
