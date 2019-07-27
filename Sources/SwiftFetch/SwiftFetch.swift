@@ -16,9 +16,7 @@ public func fetch(url: URL, options: FetchOptions? = nil) -> Promise<FetchRespon
             // HTTP Method
             request.httpMethod = "GET";
             
-            if (options != nil) {
-                print(options!);
-                
+            if (options != nil) {                
                 if (options?.headers != nil) {
                     for (key, value) in options?.headers ?? [:] {
                         request.setValue(key, forHTTPHeaderField: value)
@@ -42,7 +40,6 @@ public func fetch(url: URL, options: FetchOptions? = nil) -> Promise<FetchRespon
                 } else {
                     // Resolve if ok.
                     let responseData = FetchResponse(data: data!, response: response!)
-                    print(responseData.text());
                     resolve(responseData);
                 }
             });
