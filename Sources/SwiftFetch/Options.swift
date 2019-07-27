@@ -9,7 +9,7 @@ import Foundation
 
 public struct FetchOptions {
     
-    init(headers: [String:String]? = nil, body: Data? = nil, method: FetchMethod? = .GET) {
+    public init(headers: [String:String]? = nil, body: Data? = nil, method: FetchMethod? = .GET) {
         self.headers = headers
         self.body = body
         self.method = method
