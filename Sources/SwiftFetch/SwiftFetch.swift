@@ -19,7 +19,7 @@ public func fetch(url: URL, options: FetchOptions? = nil) -> Promise<FetchRespon
             if (options != nil) {                
                 if (options?.headers != nil) {
                     for (key, value) in options?.headers ?? [:] {
-                        request.setValue(key, forHTTPHeaderField: value)
+                        request.setValue(value, forHTTPHeaderField: key)
                     }
                 }
                 
